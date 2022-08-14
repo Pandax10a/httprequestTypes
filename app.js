@@ -32,7 +32,7 @@ function fail11(error22) {
 }
 
 
-// creating a update button
+// creating a update button to update previous post
 document.getElementById(`update_post`).addEventListener(`click`, grab_data_2);
 
 function grab_data_2 (details) {
@@ -59,4 +59,22 @@ function failpatch(errorpatch) {
     document.body.insertAdjacentHTML(`beforeend`, `<h1>Post failed to send</h1>`);
 }
 
+// creating delete option
+
+document.getElementById(`delete_post`).addEventListener(`click`, grab_data_3);
+
+function grab_data_3 (details) {
+    axios.request({
+        url: `https://jsonplaceholder.typicode.com/posts/1`,
+        method: `DELETE`,
+    }).then(successdelete).catch(faildelete);
+}
+
+function successdelete (response22) {
+    document.body.insertAdjacentHTML(`beforeend`, `<h1> Post successfully deleted</h1>`);
+}
+
+function faildelete(error22) {
+    document.body.insertAdjacentHTML(`beforeend`, `<h1>Post failed to delete</h1>`);
+}
 
