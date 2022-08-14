@@ -78,3 +78,24 @@ function faildelete(error22) {
     document.body.insertAdjacentHTML(`beforeend`, `<h1>Post failed to delete</h1>`);
 }
 
+// show all post that's posted
+
+document.getElementById(`all_post`).addEventListener(`click`, grab_data_4);
+
+function grab_data_4 (details) {
+    axios.request ({
+        url: `https://jsonplaceholder.typicode.com/posts`
+    }).then(successget).catch(failg);
+
+}
+// written a for loop to cycle through all the post
+function successget (response22) {
+    for (let i = 0; i < response22[`data`].length;i++) {
+        document.body.insertAdjacentHTML(`beforeend`, `<h2>id: ${i+1}</h2>  <h2>Title: ${response22[`data`][i][`title`]}</h2> <h3>The post: ${response22[`data`][i][`body`]}</h3>`);
+    }
+}
+function failg (error22) {
+    document.body.insertAdjacentHTML(`beforeend`, `<h1>failed to retrieve any post</h1>`);
+}
+
+
