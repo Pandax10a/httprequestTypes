@@ -32,3 +32,31 @@ function fail11(error22) {
 }
 
 
+// creating a update button
+document.getElementById(`update_post`).addEventListener(`click`, grab_data_2);
+
+function grab_data_2 (details) {
+    
+    let user_entered_title = document.querySelector(`#user_input_title`).value;
+    let user_entered_comment = document.querySelector(`#user_input_comment`).value;
+    
+    axios.request({
+        url: `https://jsonplaceholder.typicode.com/posts/1`,
+        method: `PATCH`,
+        data: {
+            title: `${user_entered_title}`,
+            body: `${user_entered_comment}`
+        }
+    }).then(successpatch).catch(failpatch);
+
+}
+
+function successpatch (responsepatch) {
+    document.body.insertAdjacentHTML(`beforeend`, `<h1> Post successfully updated</h1>`);
+}
+
+function failpatch(errorpatch) {
+    document.body.insertAdjacentHTML(`beforeend`, `<h1>Post failed to send</h1>`);
+}
+
+
